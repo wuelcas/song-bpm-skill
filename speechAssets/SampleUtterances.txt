@@ -1,0 +1,164 @@
+LaunchIntent launch
+LaunchIntent start
+
+SongRequestIntent {Song} by {Artist}
+SongRequestIntent {Song} by {Artist} from the album {Album}
+SongRequestIntent {Song} by {Artist} from {Album}
+
+SongRequestIntent what's the BPM of {Song} by {Artist}
+SongRequestIntent what's the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent what's the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent what's the BPM for {Song} by {Artist}
+SongRequestIntent what's the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent what's the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent what is the BPM of {Song} by {Artist}
+SongRequestIntent what is the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent what is the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent what is the BPM for {Song} by {Artist}
+SongRequestIntent what is the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent what is the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent what's the BPM of {Song}
+SongRequestIntent what's the BPM for {Song}
+SongRequestIntent what is the BPM of {Song}
+SongRequestIntent what is the BPM for {Song}
+SongRequestIntent what's the tempo of {Song} by {Artist}
+SongRequestIntent what's the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent what's the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent what's the tempo for {Song} by {Artist}
+SongRequestIntent what's the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent what's the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent what is the tempo of {Song} by {Artist}
+SongRequestIntent what is the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent what is the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent what is the tempo for {Song} by {Artist}
+SongRequestIntent what is the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent what is the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent what's the tempo of {Song}
+SongRequestIntent what's the tempo for {Song}
+SongRequestIntent what is the tempo for {Song}
+
+SongRequestIntent tell me the BPM of {Song} by {Artist}
+SongRequestIntent tell me the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent tell me the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent tell me the BPM for {Song} by {Artist}
+SongRequestIntent tell me the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent tell me the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent tell me the BPM of {Song}
+SongRequestIntent tell me the BPM for {Song}
+SongRequestIntent tell me the tempo of {Song} by {Artist}
+SongRequestIntent tell me the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent tell me the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent tell me the tempo for {Song} by {Artist}
+SongRequestIntent tell me the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent tell me the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent tell me the tempo of {Song}
+
+SongRequestIntent get me the BPM of {Song} by {Artist}
+SongRequestIntent get me the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent get me the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent get me the BPM for {Song} by {Artist}
+SongRequestIntent get me the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent get me the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent get me the BPM of {Song}
+SongRequestIntent get me the BPM for {Song}
+SongRequestIntent get me the tempo of {Song} by {Artist}
+SongRequestIntent get me the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent get me the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent get me the tempo for {Song} by {Artist}
+SongRequestIntent get me the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent get me the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent get me the tempo of {Song}
+SongRequestIntent get the BPM of {Song} by {Artist}
+SongRequestIntent get the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent get the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent get the BPM for {Song} by {Artist}
+SongRequestIntent get the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent get the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent get the BPM of {Song}
+SongRequestIntent get the BPM for {Song}
+SongRequestIntent get the tempo of {Song} by {Artist}
+SongRequestIntent get the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent get the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent get the tempo for {Song} by {Artist}
+SongRequestIntent get the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent get the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent get the tempo of {Song}
+
+SongRequestIntent give me the BPM of {Song} by {Artist}
+SongRequestIntent give me the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent give me the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent give me the BPM for {Song} by {Artist}
+SongRequestIntent give me the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent give me the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent give me the BPM of {Song}
+SongRequestIntent give me the BPM for {Song}
+SongRequestIntent give me the tempo of {Song} by {Artist}
+SongRequestIntent give me the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent give me the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent give me the tempo for {Song} by {Artist}
+SongRequestIntent give me the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent give me the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent give me the tempo of {Song}
+SongRequestIntent give the BPM of {Song} by {Artist}
+SongRequestIntent give the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent give the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent give the BPM for {Song} by {Artist}
+SongRequestIntent give the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent give the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent give the BPM of {Song}
+SongRequestIntent give the BPM for {Song}
+SongRequestIntent give the tempo of {Song} by {Artist}
+SongRequestIntent give the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent give the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent give the tempo for {Song} by {Artist}
+SongRequestIntent give the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent give the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent give the tempo of {Song}
+
+SongRequestIntent find me the BPM of {Song} by {Artist}
+SongRequestIntent find me the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent find me the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent find me the BPM for {Song} by {Artist}
+SongRequestIntent find me the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent find me the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent find me the BPM of {Song}
+SongRequestIntent find me the BPM for {Song}
+SongRequestIntent find me the tempo of {Song} by {Artist}
+SongRequestIntent find me the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent find me the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent find me the tempo for {Song} by {Artist}
+SongRequestIntent find me the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent find me the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent find me the tempo of {Song}
+SongRequestIntent find the BPM of {Song} by {Artist}
+SongRequestIntent find the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent find the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent find the BPM for {Song} by {Artist}
+SongRequestIntent find the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent find the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent find the BPM of {Song}
+SongRequestIntent find the BPM for {Song}
+SongRequestIntent find the tempo of {Song} by {Artist}
+SongRequestIntent find the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent find the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent find the tempo for {Song} by {Artist}
+SongRequestIntent find the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent find the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent find the tempo of {Song}
+
+SongRequestIntent the tempo of {Song}
+SongRequestIntent the tempo for {Song}
+SongRequestIntent the tempo of {Song} by {Artist}
+SongRequestIntent the tempo of {Song} by {Artist} from the album {Album}
+SongRequestIntent the tempo of {Song} by {Artist} from {Album}
+SongRequestIntent the tempo for {Song} by {Artist}
+SongRequestIntent the tempo for {Song} by {Artist} from the album {Album}
+SongRequestIntent the tempo for {Song} by {Artist} from {Album}
+SongRequestIntent the BPM of {Song} by {Artist}
+SongRequestIntent the BPM of {Song} by {Artist} from the album {Album}
+SongRequestIntent the BPM of {Song} by {Artist} from {Album}
+SongRequestIntent the BPM for {Song} by {Artist}
+SongRequestIntent the BPM for {Song} by {Artist} from the album {Album}
+SongRequestIntent the BPM for {Song} by {Artist} from {Album}
+SongRequestIntent the BPM of {Song}
+SongRequestIntent the BPM for {Song}

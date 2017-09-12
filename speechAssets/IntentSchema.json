@@ -1,0 +1,35 @@
+{
+  "intents": [
+    {
+      "intent": "LaunchIntent"
+    }
+    , {
+      "intent": "SongRequestIntent",
+      "slots": [{
+        "name": "Artist",
+        "type": "AMAZON.MusicGroup"
+      }, {
+        "name": "Song",
+        "type": "AMAZON.MusicRecording"
+      }, {
+        "name": "Album",
+        "type": "AMAZON.MusicAlbum"
+      }]
+    }
+    , {
+      "intent": "AMAZON.CancelIntent"
+    }
+    , {
+      "intent": "AMAZON.HelpIntent"
+    }
+    , {
+      "intent": "AMAZON.RepeatIntent"
+    }
+    , {
+      "intent": "AMAZON.StartOverIntent"
+    }
+    , {
+      "intent": "AMAZON.StopIntent"
+    }
+  ]
+}

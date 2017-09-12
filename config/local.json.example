@@ -1,0 +1,10 @@
+{
+	"server": {
+		"port": 3000,
+		"hostSkill": true
+	},
+	"spotify": {
+		"clientId": "", // Your spotify application clientId
+		"clientSecret": "" // Your spotify application clientSecret
+	}
+}
