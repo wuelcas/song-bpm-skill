@@ -61,10 +61,24 @@ const views = (function views() {
           text: 'Say the name of the song and I\'ll tell you the BPM. You can also specify the name of the artist and the album.',
         },
       },
+      InviteToAskForAnotherSong: {
+        tell: 'Ok. Try again with another song.',
+      },
     },
     Exit: {
       GoodbyeMessage: {
         say: 'Ok, Goodbye',
+      },
+    },
+    Metronome: {
+      PlayAudio: {
+        tell: 'Here you go.',
+      },
+      Pause: {
+        tell: 'Ok. You can come back to listen to the metronome any time. Just say: Alexa, resume. Or, Alexa, continue.',
+      },
+      Resume: {
+        tell: 'Excellent!. Let\'s continue.',
       },
     },
   };

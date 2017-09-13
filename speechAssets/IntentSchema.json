@@ -31,5 +31,14 @@
     , {
       "intent": "AMAZON.StopIntent"
     }
+    , {
+      "intent": "AMAZON.YesIntent"
+    }
+    , {
+      "intent": "AMAZON.PauseIntent"
+    }
+    , {
+      "intent": "AMAZON.ResumeIntent"
+    }
   ]
 }
