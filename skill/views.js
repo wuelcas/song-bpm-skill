@@ -6,6 +6,11 @@ const views = (function views() {
       StartResponse: {
         ask: 'What\'s the name of the song you like to know the BPM from?',
         reprompt: 'What\'s the name of the song you like to know the BPM from?',
+        card: {
+          type: 'Standard',
+          title: 'Song BPM',
+          text: 'What\'s the name of the song you like to know the BPM from?',
+        },
       },
     },
     SongInfo: {
@@ -20,21 +25,41 @@ const views = (function views() {
       NotFoundResponse: {
         ask: 'I couldn\'t find that song. Try again',
         reprompt: 'I couldn\'t find that song. Try again',
+        card: {
+          type: 'Standard',
+          title: 'Song BPM',
+          text: 'I couldn\'t find that song. Try again',
+        },
       },
       RepeatBPMOfTheSong: {
         ask: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM. Try with another song',
         reprompt: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM. Try with another song',
+        card: {
+          type: 'Standard',
+          title: 'Song BPM',
+          text: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM',
+        },
       },
       YouHaveNotSearchAnySong: {
         ask: 'You haven\'t search for any song. Try saying the name of the song with it\'s artist\'s name. You can specify the name of the album too.',
         reprompt: 'You haven\'t search for any song. Try saying the name of the song with it\'s artist\'s name. You can specify the name of the album too.',
+        card: {
+          type: 'Standard',
+          title: 'Song BPM',
+          text: 'You haven\'t search for any song. Try saying the name of the song with it\'s artist\'s name. You can specify the name of the album too.',
+        },
       },
     },
     Help: {
       InstructionsMessage: {
-        ask: 'It\'s simple. Say the name of the song and I\'ll tell you the BPM. You can also specify the name of the artist. ' +
+        ask: 'It\'s simple. Say the name of the song and I\'ll tell you the BPM. You can also specify the name of the artist and the album. ' +
         'What\'s the name of the song you like to know the BPM from?',
         reprompt: 'What\'s the name of the song you like to know the BPM from?',
+        card: {
+          type: 'Standard',
+          title: 'Song BPM',
+          text: 'Say the name of the song and I\'ll tell you the BPM. You can also specify the name of the artist and the album.',
+        },
       },
     },
     Exit: {
