@@ -15,7 +15,7 @@ const views = (function views() {
     },
     SongInfo: {
       TempoResponse: {
-        tell: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM',
+        ask: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM. Would you like to start a metronome at that tempo?',
         card: {
           type: 'Standard',
           title: 'Song BPM',
