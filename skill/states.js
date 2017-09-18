@@ -118,9 +118,8 @@ exports.register = function register(skill) {
   skill.onState('shouldPlayMetronome', (alexaEvent) => {
     if (alexaEvent.intent.name === 'AMAZON.YesIntent') {
       const milliseconds = convertBPMToMilliseconds(alexaEvent.model.BPM);
-      debug(milliseconds);
       const offsetInMilliseconds = clickTrackDurationInMS - milliseconds;
-      debug(offsetInMilliseconds);
+      debug(`Offset is: ${offsetInMilliseconds}`);
       const index = 0;
       const shuffle = 0;
       const loop = 1;
@@ -157,6 +156,23 @@ exports.register = function register(skill) {
 
     return { reply: 'Exit.GoodbyeMessage', to: 'die' };
   });
+
+  skill['onAudioPlayer.PlaybackNearlyFinished']((alexaEvent, reply) => {
+    const token = JSON.parse(alexaEvent.context.AudioPlayer.token);
+
+    if (token.loop === 0) {
+      return reply;
+    }
+
+    const shuffle = token.shuffle;
+    const loop = token.loop;
+    const offset = token.offset;
+    debug(offset);
+    const index = 0;
+
+    const directives = buildEnqueueDirective(index, shuffle, loop, offset);
+    return reply.append({ directives });
+  });
 };
 
 function convertBPMToMilliseconds(bpm) {
@@ -167,15 +183,26 @@ function buildPlayDirective(index, shuffle, loop, offsetInMilliseconds) {
   const directives = {};
   directives.type = 'AudioPlayer.Play';
   directives.playBehavior = 'REPLACE_ALL';
-  directives.token = createToken(index, shuffle, loop);
+  directives.token = createToken(index, shuffle, loop, offsetInMilliseconds);
   directives.url = clickTrackUrl;
   directives.offsetInMilliseconds = offsetInMilliseconds;
 
   return directives;
 }
 
-function createToken(index, shuffle, loop) {
-  return JSON.stringify({ index, shuffle, loop });
+function buildEnqueueDirective(index, shuffle, loop, offset) {
+  const directives = {};
+  directives.type = 'AudioPlayer.Play';
+  directives.playBehavior = 'REPLACE_ENQUEUED';
+  directives.token = createToken(index, shuffle, loop, offset);
+  directives.url = clickTrackUrl;
+  directives.offsetInMilliseconds = offset;
+
+  return directives;
+}
+
+function createToken(index, shuffle, loop, offset) {
+  return JSON.stringify({ index, shuffle, loop, offset });
 }
 
 function buildStopDirective() {
