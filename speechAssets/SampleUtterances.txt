@@ -4,6 +4,9 @@ LaunchIntent start
 SongRequestIntent {Song} by {Artist}
 SongRequestIntent {Song} by {Artist} from the album {Album}
 SongRequestIntent {Song} by {Artist} from {Album}
+SongRequestIntent {Song} of {Artist}
+SongRequestIntent {Song} of {Artist} from the album {Album}
+SongRequestIntent {Song} of {Artist} from {Album}
 
 SongRequestIntent what's the BPM of {Song} by {Artist}
 SongRequestIntent what's the BPM of {Song} by {Artist} from the album {Album}
