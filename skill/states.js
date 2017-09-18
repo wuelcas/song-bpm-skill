@@ -3,6 +3,7 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 const config = require('../config');
 const co = require('co');
+const debug = require('debug')('voxa');
 
 const clickTrackDurationInMS = 2000;
 const clickTrackUrl = 'https://s3.amazonaws.com/song-bpm-skill/click-track.mp3';
@@ -117,7 +118,9 @@ exports.register = function register(skill) {
   skill.onState('shouldPlayMetronome', (alexaEvent) => {
     if (alexaEvent.intent.name === 'AMAZON.YesIntent') {
       const milliseconds = convertBPMToMilliseconds(alexaEvent.model.BPM);
-      const offsetInMilliseconds = clickTrackDurationInMS + milliseconds;
+      debug(milliseconds);
+      const offsetInMilliseconds = clickTrackDurationInMS - milliseconds;
+      debug(offsetInMilliseconds);
       const index = 0;
       const shuffle = 0;
       const loop = 1;
@@ -157,7 +160,7 @@ exports.register = function register(skill) {
 };
 
 function convertBPMToMilliseconds(bpm) {
-  return 60000 / bpm;
+  return Math.floor(60000 / bpm);
 }
 
 function buildPlayDirective(index, shuffle, loop, offsetInMilliseconds) {
