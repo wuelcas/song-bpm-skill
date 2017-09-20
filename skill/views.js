@@ -15,11 +15,11 @@ const views = (function views() {
     },
     SongInfo: {
       TempoResponse: {
-        ask: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM. Would you like to start a metronome at that tempo?',
+        ask: '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}". Would you like to start a metronome at that tempo?',
         card: {
           type: 'Standard',
           title: 'Song BPM',
-          text: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM',
+          text: '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}"',
         },
       },
       NotFoundResponse: {
@@ -32,12 +32,12 @@ const views = (function views() {
         },
       },
       RepeatBPMOfTheSong: {
-        ask: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM. Try with another song',
-        reprompt: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM. Try with another song',
+        ask: '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}". Try with another song',
+        reprompt: '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}". Try with another song',
         card: {
           type: 'Standard',
           title: 'Song BPM',
-          text: 'The Tempo of {Song} by {Artist} from the album {Album} is {BPM} BPM',
+          text: '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}"',
         },
       },
       YouHaveNotSearchAnySong: {
