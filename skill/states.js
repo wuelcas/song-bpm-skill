@@ -44,8 +44,8 @@ exports.register = function register(skill) {
         break;
     }
     const song = alexaEvent.intent.slots.Song.value;
-    let artist = alexaEvent.intent.slots.Artist.value || '';
-    let album = alexaEvent.intent.slots.Album.value || '';
+    let artist = alexaEvent.intent.slots.Artist ? alexaEvent.intent.slots.Artist.value : '';
+    let album = alexaEvent.intent.slots.Album ? alexaEvent.intent.slots.Album.value : '';
     let query = `track:${song}`;
 
     if (artist) {
