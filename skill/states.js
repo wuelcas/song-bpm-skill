@@ -38,6 +38,8 @@ exports.register = function register(skill) {
         return { reply: 'Launch.StartResponse', to: 'sayBPMForSong' };
       case 'AMAZON.CancelIntent':
         return { reply: 'Exit.GoodbyeMessage', to: 'die' };
+      case 'AMAZON.StopIntent':
+        return { reply: 'Exit.GoodbyeMessage', to: 'die' };
       default:
         break;
     }
