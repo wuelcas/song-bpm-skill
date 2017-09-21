@@ -6,5 +6,10 @@
 	"spotify": {
 		"clientId": "", // Your spotify application clientId
 		"clientSecret": "" // Your spotify application clientSecret
+	},
+	"metronome": {
+		"clickTrackURLTemplate": "https://yoururl.com/Click-Track-{bpm}-BPM.mp3", // The URL to access your click tracks mp3. The name of mp3 needs to have the bpm number to replace the '{bpm}' part of the template
+		"minimumBPM": "50", // Min BPM that you can reproduce in the metronome
+		"maximumBPM": "180" // Max BPM that you can reproduce in the metronome
 	}
 }

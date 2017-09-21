@@ -5,7 +5,7 @@ const config = require('../config');
 const co = require('co');
 const debug = require('debug')('voxa');
 
-const clickTrackUrl = 'https://s3.amazonaws.com/song-bpm-skill/click-tracks/Click-Track-{bpm}-BPM.mp3';
+const clickTrackURLTemplate = config.metronome.clickTrackURLTemplate;
 
 const spotifyApi = new SpotifyWebApi({
   clientId: config.spotify.clientId,
@@ -97,7 +97,7 @@ exports.register = function register(skill) {
       let reply = 'SongInfo.TempoResponse';
       let to = 'sayBPMForSong';
 
-      if (tempo >= 50 && tempo <= 180) {
+      if (tempo >= config.metronome.minimumBPM && tempo <= config.metronome.maximumBPM) {
         reply = 'SongInfo.TempoResponseAndMetronomeInvitation';
         to = 'shouldPlayMetronome';
       }
@@ -129,7 +129,7 @@ exports.register = function register(skill) {
       const index = 0;
       const shuffle = 0;
       const loop = 0;
-      const url = clickTrackUrl.replace('{bpm}', alexaEvent.model.BPM);
+      const url = clickTrackURLTemplate.replace('{bpm}', alexaEvent.model.BPM);
 
       const directives = buildPlayDirective(url, index, shuffle, loop, offset);
 

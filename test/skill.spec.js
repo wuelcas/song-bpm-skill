@@ -4,6 +4,7 @@ const alexaTest = require('alexa-skill-test-framework');
 const assertView = require('./assertion-helpers').assertView;
 const assertState = require('./assertion-helpers').assertState;
 const skill = require('../skill');
+const clickTrackURLTemplate = require('../config').metronome.clickTrackURLTemplate;
 
 alexaTest.initialize(skill, 'amzn1.ask.skill.00000000-0000-0000-0000-000000000000', 'amzn1.ask.account.VOID');
 alexaTest.setExtraFeature('questionMarkCheck', false);
@@ -125,7 +126,7 @@ describe('Metronome', () => {
     const index = 0;
     const shuffle = 0;
     const loop = 0;
-    const url = 'https://s3.amazonaws.com/song-bpm-skill/click-tracks/Click-Track-156-BPM.mp3';
+    const url = clickTrackURLTemplate.replace('{bpm}', 156);
     alexaTest.test([
       {
         request: alexaTest.getLaunchRequest(),
@@ -166,7 +167,7 @@ describe('Metronome', () => {
     const index = 0;
     const shuffle = 0;
     const loop = 0;
-    const url = 'https://s3.amazonaws.com/song-bpm-skill/click-tracks/Click-Track-156-BPM.mp3';
+    const url = clickTrackURLTemplate.replace('{bpm}', 156);
     const offset = 123;
     const token = JSON.stringify({ index, shuffle, loop, url });
     alexaTest.test([
