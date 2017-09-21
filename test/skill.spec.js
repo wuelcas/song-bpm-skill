@@ -9,7 +9,7 @@ alexaTest.initialize(skill, 'amzn1.ask.skill.00000000-0000-0000-0000-00000000000
 alexaTest.setExtraFeature('questionMarkCheck', false);
 
 describe('Launch', () => {
-  describe('Found a song', () => {
+  describe('Found a song with an acceptable BPM for Metronome', () => {
     alexaTest.test([
       {
         request: alexaTest.getLaunchRequest(),
@@ -20,8 +20,25 @@ describe('Launch', () => {
       {
         request: alexaTest.getIntentRequest('SongRequestIntent', { Song: 'All creatures', Artist: 'kings kaleidoscope' }),
         shouldEndSession: false,
-        saysCallback: assertView('SongInfo.TempoResponse', { Song: 'All creatures', BPM: '156', Artist: 'kings kaleidoscope', Album: 'Asaph\'s Arrows' }),
+        saysCallback: assertView('SongInfo.TempoResponseAndMetronomeInvitation', { Song: 'All creatures', BPM: '156', Artist: 'kings kaleidoscope', Album: 'Asaph\'s Arrows' }),
         callback: assertState('shouldPlayMetronome'),
+      },
+    ]);
+  });
+
+  describe('Found a song with no acceptable BPM for Metronome', () => {
+    alexaTest.test([
+      {
+        request: alexaTest.getLaunchRequest(),
+        shouldEndSession: false,
+        saysCallback: assertView('Launch.StartResponse'),
+        callback: assertState('sayBPMForSong'),
+      },
+      {
+        request: alexaTest.getIntentRequest('SongRequestIntent', { Song: 'distance', Artist: 'vanilla sky' }),
+        shouldEndSession: false,
+        saysCallback: assertView('SongInfo.TempoResponse', { Song: 'distance', BPM: '192', Artist: 'vanilla sky', Album: 'Waiting for Something' }),
+        callback: assertState('sayBPMForSong'),
       },
     ]);
   });
