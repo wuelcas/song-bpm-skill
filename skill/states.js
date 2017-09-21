@@ -3,7 +3,6 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 const config = require('../config');
 const co = require('co');
-const debug = require('debug')('voxa');
 
 const clickTrackURLTemplate = config.metronome.clickTrackURLTemplate;
 
@@ -155,7 +154,6 @@ exports.register = function register(skill) {
       const loop = token.loop;
       const index = token.index;
       const offsetInMilliseconds = alexaEvent.context.AudioPlayer.offsetInMilliseconds;
-      debug(token.url);
       const url = token.url;
 
       const directives = buildPlayDirective(url, index, shuffle, loop, offsetInMilliseconds);
