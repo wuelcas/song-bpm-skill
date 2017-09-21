@@ -8,7 +8,7 @@ gulp.task('watch', () =>
     script: 'server.js',
     watch: ['config/*', 'services/*', 'skill/*', 'server.js'],
     ext: 'json js',
-    ignore: ['node_modules/**/*']
+    ignore: ['node_modules/**/*'],
   }));
 
 gulp.task('run', () =>
