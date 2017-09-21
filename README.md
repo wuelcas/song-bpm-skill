@@ -3,7 +3,7 @@
 ### Development Setup
 
 * Install and use Node ^v4.3.2
-* [Create a new Spotify Application]('https://developer.spotify.com/my-applications/#!/') since we need to use the [Spotify Web API](https://developer.spotify.com/web-api/)
+* [Create a new Spotify Application]('https://developer.spotify.com/my-applications/') since we need to use the [Spotify Web API](https://developer.spotify.com/web-api/)
 * Run `npm install`
 * Rename the `config/local.json.example` to `config/local.json` and edit it with all of the requisite fields.
 
