@@ -9,7 +9,7 @@ alexaTest.initialize(skill, 'amzn1.ask.skill.00000000-0000-0000-0000-00000000000
 alexaTest.setExtraFeature('questionMarkCheck', false);
 
 describe('Launch', () => {
-  describe('Found a song with an acceptable BPM for Metronome', () => {
+  describe('Found a song with an available BPM for Metronome', () => {
     alexaTest.test([
       {
         request: alexaTest.getLaunchRequest(),
@@ -26,7 +26,7 @@ describe('Launch', () => {
     ]);
   });
 
-  describe('Found a song with no acceptable BPM for Metronome', () => {
+  describe('Found a song with no available BPM for Metronome', () => {
     alexaTest.test([
       {
         request: alexaTest.getLaunchRequest(),
