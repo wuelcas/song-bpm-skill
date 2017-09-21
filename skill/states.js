@@ -24,6 +24,8 @@ exports.register = function register(skill) {
   skill.onIntent('SongRequestIntent', () => ({ to: 'sayBPMForSong' }));
   skill.onIntent('AMAZON.CancelIntent', () => ({ reply: 'Exit.GoodbyeMessage', to: 'die' }));
   skill.onIntent('AMAZON.RepeatIntent', () => ({ to: 'repeatTheBPMOfTheSong' }));
+  skill.onIntent('AMAZON.YesIntent', () => ({ reply: 'Help.InstructionsMessage', to: 'sayBPMForSong' }));
+  skill.onIntent('AMAZON.noIntent', () => ({ reply: 'Help.InstructionsMessage', to: 'sayBPMForSong' }));
 
   skill.onState('sayBPMForSong', (alexaEvent) => {
     switch (alexaEvent.intent.name) {
