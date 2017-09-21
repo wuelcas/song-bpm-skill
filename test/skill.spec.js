@@ -119,3 +119,66 @@ describe('Help the user', () => {
     ]);
   });
 });
+
+describe('Metronome', () => {
+  describe('Start Metronome', () => {
+    const index = 0;
+    const shuffle = 0;
+    const loop = 0;
+    const url = 'https://s3.amazonaws.com/song-bpm-skill/click-tracks/Click-Track-156-BPM.mp3';
+    alexaTest.test([
+      {
+        request: alexaTest.getLaunchRequest(),
+      },
+      {
+        request: alexaTest.getIntentRequest('SongRequestIntent', { Song: 'All creatures', Artist: 'kings kaleidoscope' }),
+      },
+      {
+        request: alexaTest.getIntentRequest('AMAZON.YesIntent'),
+        shouldEndSession: true,
+        saysCallback: assertView('Metronome.PlayAudio'),
+        playsStream: {
+          behavior: 'REPLACE_ALL',
+          url,
+          token: JSON.stringify({ index, shuffle, loop, url }),
+          offset: 0,
+        },
+      },
+    ]);
+  });
+
+  describe('Pause or stop metronome', () => {
+    alexaTest.test([
+      {
+        request: alexaTest.getIntentRequest('AMAZON.StopIntent'),
+        stopsStream: true,
+      },
+    ]);
+    alexaTest.test([
+      {
+        request: alexaTest.getIntentRequest('AMAZON.PauseIntent'),
+        stopsStream: true,
+      },
+    ]);
+  });
+
+  describe('Resume metronome', () => {
+    const index = 0;
+    const shuffle = 0;
+    const loop = 0;
+    const url = 'https://s3.amazonaws.com/song-bpm-skill/click-tracks/Click-Track-156-BPM.mp3';
+    const offset = 123;
+    const token = JSON.stringify({ index, shuffle, loop, url });
+    alexaTest.test([
+      {
+        request: alexaTest.addAudioPlayerContextToRequest(alexaTest.getIntentRequest('AMAZON.ResumeIntent'), token, offset),
+        playsStream: {
+          behavior: 'REPLACE_ALL',
+          token,
+          url,
+          offset,
+        },
+      },
+    ]);
+  });
+});
