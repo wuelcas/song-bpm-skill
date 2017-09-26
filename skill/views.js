@@ -89,6 +89,12 @@ const views = (function views() {
         tell: 'Excellent!. Let\'s continue.',
       },
     },
+    InvalidIntent: {
+      InMetronome: {
+        ask: 'I didn\'t understand what you said. Would like start a metronome at {BPM} BPM?',
+        reprompt: 'Would like start a metronomeat at {BPM} BPM?',
+      },
+    },
   };
 }());
 module.exports = views;

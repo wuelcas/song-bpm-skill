@@ -137,9 +137,27 @@ exports.register = function register(skill) {
       return { reply: 'Metronome.PlayAudio', to: 'die', directives };
     }
 
+    if (alexaEvent.intent.name === 'AMAZON.NoIntent') {
+      return {
+        reply: 'Help.InviteToAskForAnotherSong',
+        to: 'sayBPMForSong',
+      };
+    }
+
+    if (alexaEvent.intent.name === 'AMAZON.RepeatIntent') {
+      return { to: 'repeatTheBPMOfTheSong' };
+    }
+
+    if (alexaEvent.intent.name === 'AMAZON.HelpIntent') {
+      return {
+        reply: 'Help.InstructionsMessage',
+        to: 'sayBPMForSong',
+      };
+    }
+
     return {
-      reply: 'Help.InviteToAskForAnotherSong',
-      to: 'sayBPMForSong',
+      reply: 'InvalidIntent.InMetronome',
+      to: 'shouldPlayMetronome',
     };
   });
 
