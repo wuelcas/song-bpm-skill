@@ -24,7 +24,8 @@
     "co": "^4.6.0",
     "lodash": "^4.17.4",
     "spotify-web-api-node": "^2.5.0",
-    "voxa": "^2.0.0"
+    "voxa": "^2.0.0",
+    "voxa-ga": "^1.0.1"
   },
   "devDependencies": {
     "alexa-skill-test-framework": "^1.1.2",

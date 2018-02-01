@@ -10,7 +10,7 @@
           "watch"
         ],
         "env": {
-          "DEBUG": "voxa"
+          "DEBUG": "voxa,voxa:opearlo"
         }
       }
     ]
