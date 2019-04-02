@@ -80,8 +80,8 @@ const views = {
               "Say the name of the song and I'll tell you the BPM. You can also specify the name of the artist and the album."
           }
         },
-        InviteTosayForAnotherSong: {
-          tell: "Ok. Try again with another song."
+        InviteToAskForAnotherSong: {
+          say: "Ok. Try again with another song."
         }
       },
       Exit: {
@@ -91,14 +91,14 @@ const views = {
       },
       Metronome: {
         PlayAudio: {
-          tell: "Here you go."
+          say: "Here you go."
         },
         Pause: {
-          tell:
+          say:
             "Ok. You can come back to listen to the metronome any time. Just say: Alexa, resume. Or, Alexa, continue."
         },
         Resume: {
-          tell: "Excellent!. Let's continue."
+          say: "Excellent!. Let's continue."
         }
       },
       InvalidIntent: {
