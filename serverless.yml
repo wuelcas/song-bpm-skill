@@ -1,32 +1,113 @@
 # Welcome to Serverless!
 #
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
 # For full config options, check the docs:
 #    docs.serverless.com
 #
 # Happy Coding!
 
-service: starter-kit
+service: wynn-skill
 
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
-# frameworkVersion: "=X.X.X"
+plugins:
+  - serverless-sentry
+  - serverless-plugin-typescript
+
+custom:
+  config: ${file(src/config/index.js):asFunction}
+  sentry:
+    dsn: ${self:custom.config.raven.DSN}
 
 provider:
   name: aws
-  runtime: nodejs4.3
+  runtime: nodejs8.10
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "a4b:*"
+      Resource:
+        - "*"
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:*"
+      Resource:
+        Fn::GetAtt:
+          - TableUsers
+          - "Arn"
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:*"
+      Resource:
+        Fn::GetAtt:
+          - TableRooms
+          - "Arn"
 
+  environment:
+    NODE_ENV: ${opt:stage}
+    SENTRY_RELEASE: ${env:GIT_COMMIT}
 
 functions:
-  skill:
-    handler: skill/index.handler
+  alexa:
+    timeout: 7
+    handler: src/handler.alexaLambda
     events:
-      - alexaSkill
-    environment: 
-      DEBUG: voxa
+      - alexaSkill: ${env:SKILL_ID}
+  room-manager:
+    timeout: 7
+    handler: src/handler.roomManagementHandler
+    events:
+      - http:
+          path: room-management
+          method: POST
+          private: true # Requires clients to add API keys values in the `x-api-key` header of their request
 
+package:
+  include:
+    - src/config/*.json
+
+  exclude:
+    - scripts/**
+    - assets/**
+    - reports/**
+    - speech-assets/**
+
+resources:
+  Resources:
+    assets:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.config.s3.bucket}
+        AccessControl: PublicRead
+        CorsConfiguration:
+          CorsRules:
+            -
+              AllowedOrigins:
+                - "*"
+              AllowedMethods:
+                - GET
+
+    TableUsers:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.config.dynamoDB.tables.users}
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+
+    TableRooms:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.config.dynamoDB.tables.rooms}
+        AttributeDefinitions:
+          - AttributeName: roomArn
+            AttributeType: S
+        KeySchema:
+          - AttributeName: roomArn
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5

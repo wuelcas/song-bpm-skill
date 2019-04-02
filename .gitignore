@@ -79,12 +79,14 @@ jspm_packages
 .node_repl_history
 
 #### Project
-/src
-/www/public
 /config/local.json
+/src/config/local.json
 .serverless
 
 #### Environment
 
 #WebStorm
 .idea
+
+# Typescript build
+.build
