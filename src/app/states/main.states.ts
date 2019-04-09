@@ -1,13 +1,7 @@
-import * as SpotifyWebApi from "spotify-web-api-node";
 import { IVoxaEvent, IVoxaIntentEvent, PlayAudio, StopAudio, VoxaApp } from "voxa";
 import * as config from "../../config/index";
 
 const clickTrackURLTemplate = config.metronome.clickTrackURLTemplate;
-
-const spotifyApi = new SpotifyWebApi({
-  clientId: config.spotify.clientId,
-  clientSecret: config.spotify.clientSecret
-});
 
 export function register(voxaApp: VoxaApp) {
   voxaApp.onState("entry", {
