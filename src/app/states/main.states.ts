@@ -3,6 +3,11 @@ import * as config from "../../config/index";
 
 const clickTrackURLTemplate = config.metronome.clickTrackURLTemplate;
 
+// TODO: make metronome work
+// TODO: refactor state code, specially when handling intents
+// TODO: check direct intents
+// TODO: Make tests using alexa mime
+
 export function register(voxaApp: VoxaApp) {
   voxaApp.onState("entry", {
     PauseIntent: "stop",
