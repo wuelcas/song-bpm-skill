@@ -74,24 +74,57 @@ export function register(voxaApp: VoxaApp) {
       return {
         flow: "yield",
         reply: "SongInfo.NotFoundResponse",
-        to: "sayBPMForSong"
+        to: "tryAgainWithAnotherSong?"
       };
-    }
-
-    let reply = "SongInfo.TempoResponse";
-    let to = "sayBPMForSong";
-
-    if (result.tempo >= config.metronome.minimumBPM && result.tempo <= config.metronome.maximumBPM) {
-      reply = "SongInfo.TempoResponseAndMetronomeInvitation";
-      to = "shouldPlayMetronome";
     }
 
     return {
       flow: "yield",
-      reply,
-      to
+      reply: "SongInfo.TempoResponse",
+      to: "wasThatTheSongTheUserWanted?"
     };
   });
+
+  voxaApp.onState("wasThatTheSongTheUserWanted?", async (voxaEvent: IVoxaIntentEvent) => {
+    if (voxaEvent.intent.name === "NoIntent") {
+      if (voxaEvent.model.haveMoreSongs) {
+        await voxaEvent.model.setNextSongInfo();
+        return {
+          flow: "yield",
+          reply: "SongInfo.TempoResponse",
+          to: "wasThatTheSongTheUserWanted?"
+        };
+      }
+
+      return {
+        flow: "yield",
+        reply: "SongInfo.NotFoundResponse",
+        to: "tryAgainWithAnotherSong?"
+      };
+    }
+
+    if (voxaEvent.intent.name === "YesIntent") {
+      const tempo = voxaEvent.model.getCurrentSongTempo();
+      if (tempo >= config.metronome.minimumBPM && tempo <= config.metronome.maximumBPM) {
+        return {
+          flow: "yield",
+          reply: "SongInfo.MetronomeInvitation",
+          to: "shouldPlayMetronome?"
+        };
+      }
+
+      return {
+        flow: "yield",
+        reply: "SongInfo.SayAnotherSong",
+        to: "sayBPMForSong"
+      };
+    }
+  });
+
+  voxaApp.onState("tryAgainWithAnotherSong?", { flow: "terminate", reply: "Exit.GoodbyeMessage" }, "NoIntent");
+  voxaApp.onState("tryAgainWithAnotherSong?", { flow: "yield",
+  reply: "SongInfo.SayAnotherSong",
+  to: "sayBPMForSong" }, "NoIntent");
 
   voxaApp.onState("repeatTheBPMOfTheSong", (voxaEvent: IVoxaIntentEvent) => {
     if (voxaEvent.model.Artist && voxaEvent.model.BPM) {
@@ -109,7 +142,7 @@ export function register(voxaApp: VoxaApp) {
     };
   });
 
-  voxaApp.onState("shouldPlayMetronome", (voxaEvent: IVoxaIntentEvent) => {
+  voxaApp.onState("shouldPlayMetronome?", (voxaEvent: IVoxaIntentEvent) => {
     if (voxaEvent.intent.name === "YesIntent") {
       const url = clickTrackURLTemplate.replace("{bpm}", voxaEvent.model.BPM);
 
@@ -118,7 +151,7 @@ export function register(voxaApp: VoxaApp) {
       return {
         directives: [playDirective],
         flow: "terminate",
-        reply: "Metronome.PlayAudio",
+        reply: "Metronome.PlayAudio"
       };
     }
 
@@ -152,7 +185,7 @@ export function register(voxaApp: VoxaApp) {
   voxaApp.onState("stop", {
     directives: [StopAudio],
     reply: "Metronome.Pause",
-    to: "die",
+    to: "die"
   });
 
   voxaApp.onIntent("ResumeIntent", (voxaEvent: IVoxaEvent) => {
