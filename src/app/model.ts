@@ -23,6 +23,7 @@ export default class Model {
   public SpotifyAccessTokenExpireTime: number;
   public foundSongs: IFoundSongs[] = [];
   public nextSongIndex: number;
+  public songWasGuessed: boolean = false;
 
   constructor(data: any = {}) {
     _.assign(this, data);
@@ -106,6 +107,10 @@ export default class Model {
 
   public getCurrentSongTempo(): number {
     return this.BPM;
+  }
+
+  public guessedTheSong() {
+    this.songWasGuessed = true;
   }
 
   private async setSpotifyCredentials() {

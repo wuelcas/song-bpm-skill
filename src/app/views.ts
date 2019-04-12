@@ -5,7 +5,7 @@ const views = {
     translation: {
       Exit: {
         GoodbyeMessage: {
-          say: "Ok, Goodbye"
+          say: "Ok, remember you can always come back to know the tempo of your favorite songs, I'll try my best to give you the correct information. You can also specify the artist and album name for better accuracy. Good luck on your musical journey."
         }
       },
       Help: {
@@ -22,7 +22,7 @@ const views = {
             "What's the name of the song you like to know the BPM from?",
         },
         InviteToAskForAnotherSong: {
-          say: "Ok. Try again with another song."
+          say: "Ok. What's the name of the song you like to know the BPM from?"
         }
       },
       Launch: {
@@ -53,6 +53,9 @@ const views = {
           reprompt: "Would you like to start a metronomeat at {BPM} BPM?",
           say:
             "I didn't understand what you said. Would you like to start a metronome at {BPM} BPM?",
+        },
+        DidNotUnderstand: {
+          say: "I'm sorry, I didn't understand what you said. What song would like to know the BPM from?"
         }
       },
       SongInfo: {
@@ -74,17 +77,15 @@ const views = {
           reprompt: "Do you want to try with another song?",
           say: "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: '{Song}', by '{Artist}', from the album '{Album}'. Do you want to try with another song?"
         },
-        RepeatBPMOfTheSong: {
+        RepeatLastSongTempo: {
           card: {
             text:
-              '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}"',
+              '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}".',
             title: "Song BPM",
             type: "Standard",
           },
-          reprompt:
-            '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}". Try with another song',
           say:
-            '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}". Try with another song',
+            '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}". Would you like to try with another song?',
         },
         SayAnotherSong: {
           say: "Say the name of the song and I'll search it. What song do you want?"
@@ -110,10 +111,8 @@ const views = {
             title: "Song BPM",
             type: "Standard",
           },
-          reprompt:
-            "You haven't search for any song. Try saying the name of the song with it's artist's name. You can specify the name of the album too.",
           say:
-            "You haven't search for any song. Try saying the name of the song with it's artist's name. You can specify the name of the album too.",
+            "You haven't search for any song. Try saying the name of the song with it's artist's name. You can specify the name of the album too. What's the name of the song you like the BPM from?",
         }
       },
     }

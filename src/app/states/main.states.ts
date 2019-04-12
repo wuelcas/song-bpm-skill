@@ -1,11 +1,10 @@
 import { IVoxaEvent, IVoxaIntentEvent, PlayAudio, StopAudio, VoxaApp } from "voxa";
 import * as config from "../../config/index";
+import MusicTempoModel from "../model";
 
 const clickTrackURLTemplate = config.metronome.clickTrackURLTemplate;
 
 // TODO: make metronome work
-// TODO: refactor state code, specially when handling intents
-// TODO: check direct intents
 // TODO: Make tests using alexa mime
 
 export function register(voxaApp: VoxaApp) {
@@ -19,81 +18,60 @@ export function register(voxaApp: VoxaApp) {
     reply: "Launch.StartResponse",
     to: "sayBPMForSong"
   });
-  voxaApp.onIntent("StartOverIntent", {
-    flow: "yield",
-    reply: "Launch.StartResponse",
-    to: "sayBPMForSong"
-  });
+  voxaApp.onIntent("StartOverIntent", { to: "LaunchIntent" });
   voxaApp.onIntent("HelpIntent", {
     flow: "yield",
     reply: "Help.InstructionsMessage",
     to: "sayBPMForSong"
   });
   voxaApp.onIntent("SongRequestIntent", { to: "sayBPMForSong" });
-  voxaApp.onIntent("CancelIntent", {
+  voxaApp.onIntent("CancelIntent", { to: "ExitSkill" });
+  voxaApp.onState("ExitSkill", {
     flow: "terminate",
     reply: "Exit.GoodbyeMessage"
   });
   voxaApp.onIntent("RepeatIntent", { to: "repeatTheBPMOfTheSong" });
-  voxaApp.onIntent("YesIntent", {
-    flow: "yield",
-    reply: "Help.InstructionsMessage",
-    to: "sayBPMForSong"
-  });
-  voxaApp.onIntent("NoIntent", {
-    flow: "yield",
-    reply: "Help.InstructionsMessage",
-    to: "sayBPMForSong"
-  });
 
   voxaApp.onState("sayBPMForSong", async (voxaEvent: IVoxaIntentEvent) => {
-    switch (voxaEvent.intent.name) {
-      case "RepeatIntent":
-        return { to: "repeatTheBPMOfTheSong" };
-      case "HelpIntent":
-        return { flow: "yield", reply: "Help.InstructionsMessage", to: "sayBPMForSong" };
-      case "StartOverIntent":
-        return { flow: "yield", reply: "Launch.StartResponse", to: "sayBPMForSong" };
-      case "LaunchIntent":
-        return { flow: "yield", reply: "Launch.StartResponse", to: "sayBPMForSong" };
-      case "CancelIntent":
-        return { flow: "terminate", reply: "Exit.GoodbyeMessage" };
-      case "StopIntent":
-        return { flow: "terminate", reply: "Exit.GoodbyeMessage" };
-      default:
-        break;
-    }
-    const song = voxaEvent.intent.params.Song;
-    let query = `track:${song}`;
+    if (voxaEvent.intent.name === "SongRequestIntent") {
+      const song = voxaEvent.intent.params.Song;
+      const model = voxaEvent.model as MusicTempoModel;
 
-    if (voxaEvent.intent.params.Artist) {
-      query = `${query} artist:${voxaEvent.intent.params.Artist}`;
-    }
-    if (voxaEvent.intent.params.Album) {
-      query = `${query} album:${voxaEvent.intent.params.Album}`;
-    }
+      let query = `track:${song}`;
 
-    const result = await voxaEvent.model.getQueryResult(query);
+      if (voxaEvent.intent.params.Artist) {
+        query = `${query} artist:${voxaEvent.intent.params.Artist}`;
+      }
+      if (voxaEvent.intent.params.Album) {
+        query = `${query} album:${voxaEvent.intent.params.Album}`;
+      }
 
-    if (result.notFound) {
+      const result = await model.getQueryResult(query);
+
+      if (result.notFound) {
+        return {
+          flow: "yield",
+          reply: "SongInfo.NotFoundResponse",
+          to: "tryAgainWithAnotherSong?"
+        };
+      }
+
+      model.songWasGuessed = false; // Reset flag for repeat intent
+
       return {
         flow: "yield",
-        reply: "SongInfo.NotFoundResponse",
-        to: "tryAgainWithAnotherSong?"
+        reply: "SongInfo.TempoResponse",
+        to: "wasThatTheSongTheUserWanted?"
       };
     }
-
-    return {
-      flow: "yield",
-      reply: "SongInfo.TempoResponse",
-      to: "wasThatTheSongTheUserWanted?"
-    };
   });
 
   voxaApp.onState("wasThatTheSongTheUserWanted?", async (voxaEvent: IVoxaIntentEvent) => {
+    const model = voxaEvent.model as MusicTempoModel;
+
     if (voxaEvent.intent.name === "NoIntent") {
-      if (voxaEvent.model.haveMoreSongs) {
-        await voxaEvent.model.setNextSongInfo();
+      if (model.haveMoreSongs) {
+        await model.setNextSongInfo();
         return {
           flow: "yield",
           reply: "SongInfo.TempoResponse",
@@ -109,7 +87,9 @@ export function register(voxaApp: VoxaApp) {
     }
 
     if (voxaEvent.intent.name === "YesIntent") {
-      const tempo = voxaEvent.model.getCurrentSongTempo();
+      model.guessedTheSong();
+
+      const tempo = model.getCurrentSongTempo();
       if (tempo >= config.metronome.minimumBPM && tempo <= config.metronome.maximumBPM) {
         return {
           flow: "yield",
@@ -132,11 +112,20 @@ export function register(voxaApp: VoxaApp) {
   to: "sayBPMForSong" }, "NoIntent");
 
   voxaApp.onState("repeatTheBPMOfTheSong", (voxaEvent: IVoxaIntentEvent) => {
-    if (voxaEvent.model.Artist && voxaEvent.model.BPM) {
+    const model = voxaEvent.model as MusicTempoModel;
+    if (model.Artist && model.BPM) {
+      if (model.songWasGuessed) {
+        return {
+          flow: "yield",
+          reply: "SongInfo.RepeatLastSongTempo",
+          to: "tryAgainWithAnotherSong?"
+        };
+      }
+
       return {
         flow: "yield",
-        reply: "SongInfo.RepeatBPMOfTheSong",
-        to: "sayBPMForSong"
+        reply: "SongInfo.TempoResponse",
+        to: "wasThatTheSongTheUserWanted?"
       };
     }
 
@@ -148,8 +137,9 @@ export function register(voxaApp: VoxaApp) {
   });
 
   voxaApp.onState("shouldPlayMetronome?", (voxaEvent: IVoxaIntentEvent) => {
+    const model = voxaEvent.model as MusicTempoModel;
     if (voxaEvent.intent.name === "YesIntent") {
-      const url = clickTrackURLTemplate.replace("{bpm}", voxaEvent.model.BPM);
+      const url = clickTrackURLTemplate.replace("{bpm}", model.BPM);
 
       const playDirective = new PlayAudio(url, "{}", 0, "REPLACE_ALL");
 
@@ -164,18 +154,6 @@ export function register(voxaApp: VoxaApp) {
       return {
         flow: "yield",
         reply: "Help.InviteToAskForAnotherSong",
-        to: "sayBPMForSong"
-      };
-    }
-
-    if (voxaEvent.intent.name === "RepeatIntent") {
-      return { to: "repeatTheBPMOfTheSong" };
-    }
-
-    if (voxaEvent.intent.name === "HelpIntent") {
-      return {
-        flow: "yield",
-        reply: "Help.InstructionsMessage",
         to: "sayBPMForSong"
       };
     }
@@ -218,10 +196,11 @@ export function register(voxaApp: VoxaApp) {
     return { flow: "terminate", reply: "Exit.GoodbyeMessage" };
   });
 
-  /* voxaApp.onState("FallbackIntent", {
-    reply: "Fallback.CallConcierge",
-    to: "learnMoreAboutCategories"
-  }); */
+  voxaApp.onState("FallbackIntent", {
+    flow: "yield",
+    reply: "InvalidIntent.DidNotUnderstand",
+    to: "sayBPMForSong"
+  });
 
-  // voxaApp.onUnhandledState((): any => ({ to: "FallbackIntent" }));
+  voxaApp.onUnhandledState((): any => ({ to: "FallbackIntent" }));
 }
