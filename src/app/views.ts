@@ -70,12 +70,12 @@ const views = {
         },
         NotFoundResponse: {
           card: {
-            text: "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: '{Song}', by '{Artist}', from the album '{Album}'. Do you want to try with another song?",
+            text: "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: 'Let It Be', by 'The Beatles', from the album 'Let It Be'. Do you want to try with another song?",
             title: "Song BPM",
             type: "Standard",
           },
           reprompt: "Do you want to try with another song?",
-          say: "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: '{Song}', by '{Artist}', from the album '{Album}'. Do you want to try with another song?"
+          say: "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: 'Let It Be', by 'The Beatles', from the album 'Let It Be'. Do you want to try with another song?"
         },
         RepeatLastSongTempo: {
           card: {

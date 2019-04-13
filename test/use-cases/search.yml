@@ -124,3 +124,13 @@ User search for "I Told You So" song and say no to the third and final choice:
         Artist: The Hives
         Album: Veni Vidi Vicious
       alexaResponse: SongInfo.NotFoundResponse
+
+User search for a song that was not found:
+  - beforeEach: mockNotFoundSong
+  - afterEach: clear
+  - LaunchIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: Some unknown song
+      alexaResponse: SongInfo.NotFoundResponse

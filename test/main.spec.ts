@@ -78,6 +78,22 @@ const describeWrapper = {
     simple.restore();
     nock.cleanAll();
   },
+  mockNotFoundSong: () => {
+    simple.mock(SpotifyWebApi.prototype, "clientCredentialsGrant").resolveWith({
+      body: {
+        access_token: "HHqyaoTPZULsxoxD",
+        expires_in: 3000000000,
+      }
+    });
+    simple.mock(SpotifyWebApi.prototype, "setAccessToken").resolveWith({});
+    simple.mock(SpotifyWebApi.prototype, "searchTracks").resolveWith({
+      body: {
+        tracks: {
+          items: [],
+        }
+      }
+    });
+  },
   mockSpotifyApiForToldYouSo: () => {
     simple.mock(SpotifyWebApi.prototype, "clientCredentialsGrant").resolveWith({
       body: {
