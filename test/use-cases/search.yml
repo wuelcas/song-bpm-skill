@@ -35,7 +35,7 @@ User search for "I Told You So" song and say no to the first choice:
         Album: After Laughter
       alexaResponse: SongInfo.TempoResponse
 
-User search for "I Told You So" song and say yes to the second choice:
+User search for "I Told You So" song and say yes to the second choice and has valid metronome tempo:
   - beforeEach: mockSpotifyApiForToldYouSo
   - afterEach: clear
   - LaunchIntent:
@@ -134,3 +134,20 @@ User search for a song that was not found:
       slots:
         Song: Some unknown song
       alexaResponse: SongInfo.NotFoundResponse
+
+User search for a song that has an invalid metronome tempo:
+  - beforeEach: mockInvalidTempoSong
+  - afterEach: clear
+  - LaunchIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: A very fast song
+      alexaVariable:
+        BPM: 200
+        Song: A Very Fast Song
+        Artist: Some crazy band
+        Album: Ultimate Album
+      alexaResponse: SongInfo.TempoResponse
+  - YesIntent:
+      alexaResponse: SongInfo.SayAnotherSong
