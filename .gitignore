@@ -82,6 +82,7 @@ jspm_packages
 /config/local.json
 /src/config/local.json
 .serverless
+reports/
 
 #### Environment
 
