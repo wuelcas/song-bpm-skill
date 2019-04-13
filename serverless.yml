@@ -1,48 +1,17 @@
-# Welcome to Serverless!
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
-
-service: wynn-skill
+service: music-tempo-skill
 
 plugins:
-  - serverless-sentry
   - serverless-plugin-typescript
 
 custom:
   config: ${file(src/config/index.js):asFunction}
-  sentry:
-    dsn: ${self:custom.config.raven.DSN}
 
 provider:
   name: aws
   runtime: nodejs8.10
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - "a4b:*"
-      Resource:
-        - "*"
-    - Effect: "Allow"
-      Action:
-        - "dynamodb:*"
-      Resource:
-        Fn::GetAtt:
-          - TableUsers
-          - "Arn"
-    - Effect: "Allow"
-      Action:
-        - "dynamodb:*"
-      Resource:
-        Fn::GetAtt:
-          - TableRooms
-          - "Arn"
 
   environment:
     NODE_ENV: ${opt:stage}
-    SENTRY_RELEASE: ${env:GIT_COMMIT}
 
 functions:
   alexa:
@@ -50,14 +19,6 @@ functions:
     handler: src/handler.alexaLambda
     events:
       - alexaSkill: ${env:SKILL_ID}
-  room-manager:
-    timeout: 7
-    handler: src/handler.roomManagementHandler
-    events:
-      - http:
-          path: room-management
-          method: POST
-          private: true # Requires clients to add API keys values in the `x-api-key` header of their request
 
 package:
   include:
@@ -83,31 +44,3 @@ resources:
                 - "*"
               AllowedMethods:
                 - GET
-
-    TableUsers:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: ${self:custom.config.dynamoDB.tables.users}
-        AttributeDefinitions:
-          - AttributeName: userId
-            AttributeType: S
-        KeySchema:
-          - AttributeName: userId
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
-
-    TableRooms:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: ${self:custom.config.dynamoDB.tables.rooms}
-        AttributeDefinitions:
-          - AttributeName: roomArn
-            AttributeType: S
-        KeySchema:
-          - AttributeName: roomArn
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
