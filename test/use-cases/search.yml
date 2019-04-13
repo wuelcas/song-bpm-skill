@@ -1,0 +1,126 @@
+User search for "I Told You So" song:
+  - beforeEach: mockSpotifyApiForToldYouSo
+  - afterEach: clear
+  - LaunchIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: told you so
+      alexaVariable:
+        BPM: 99
+        Song: Told You So
+        Artist: HRVY
+        Album: Told You So
+      alexaResponse: SongInfo.TempoResponse
+
+User search for "I Told You So" song and say no to the first choice:
+  - beforeEach: mockSpotifyApiForToldYouSo
+  - afterEach: clear
+  - LaunchIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: told you so
+      alexaVariable:
+        BPM: 99
+        Song: Told You So
+        Artist: HRVY
+        Album: Told You So
+      alexaResponse: SongInfo.TempoResponse
+  - NoIntent:
+      alexaVariable:
+        BPM: 123
+        Song: Told You So
+        Artist: Paramore
+        Album: After Laughter
+      alexaResponse: SongInfo.TempoResponse
+
+User search for "I Told You So" song and say yes to the second choice:
+  - beforeEach: mockSpotifyApiForToldYouSo
+  - afterEach: clear
+  - LaunchIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: told you so
+      alexaVariable:
+        BPM: 99
+        Song: Told You So
+        Artist: HRVY
+        Album: Told You So
+      alexaResponse: SongInfo.TempoResponse
+  - NoIntent:
+      alexaVariable:
+        BPM: 123
+        Song: Told You So
+        Artist: Paramore
+        Album: After Laughter
+      alexaResponse: SongInfo.TempoResponse
+  - YesIntent:
+      alexaVariable:
+        BPM: 123
+      alexaResponse: SongInfo.MetronomeInvitation
+
+User search for "I Told You So" song and say no to the second choice:
+  - beforeEach: mockSpotifyApiForToldYouSo
+  - afterEach: clear
+  - LaunchIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: told you so
+      alexaVariable:
+        BPM: 99
+        Song: Told You So
+        Artist: HRVY
+        Album: Told You So
+      alexaResponse: SongInfo.TempoResponse
+  - NoIntent:
+      alexaVariable:
+        BPM: 123
+        Song: Told You So
+        Artist: Paramore
+        Album: After Laughter
+      alexaResponse: SongInfo.TempoResponse
+  - NoIntent:
+      alexaVariable:
+        BPM: 135
+        Song: Hate To Say I Told You So
+        Artist: The Hives
+        Album: Veni Vidi Vicious
+      alexaResponse: SongInfo.TempoResponse
+
+User search for "I Told You So" song and say no to the third and final choice:
+  - beforeEach: mockSpotifyApiForToldYouSo
+  - afterEach: clear
+  - LaunchIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: told you so
+      alexaVariable:
+        BPM: 99
+        Song: Told You So
+        Artist: HRVY
+        Album: Told You So
+      alexaResponse: SongInfo.TempoResponse
+  - NoIntent:
+      alexaVariable:
+        BPM: 123
+        Song: Told You So
+        Artist: Paramore
+        Album: After Laughter
+      alexaResponse: SongInfo.TempoResponse
+  - NoIntent:
+      alexaVariable:
+        BPM: 135
+        Song: Hate To Say I Told You So
+        Artist: The Hives
+        Album: Veni Vidi Vicious
+      alexaResponse: SongInfo.TempoResponse
+  - NoIntent:
+      alexaVariable:
+        Song: Hate To Say I Told You So
+        Artist: The Hives
+        Album: Veni Vidi Vicious
+      alexaResponse: SongInfo.NotFoundResponse

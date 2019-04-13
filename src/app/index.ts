@@ -25,25 +25,25 @@ states(voxaApp);
 
 plugins.replaceIntent(voxaApp);
 
-voxaApp.onIntentRequest(async (voxaEvent: IVoxaIntentEvent) => {
+/* voxaApp.onIntentRequest(async (voxaEvent: IVoxaIntentEvent) => {
   voxaEvent.log.info("intent", {
     intent: voxaEvent.intent.rawIntent,
     userId: voxaEvent.user.userId
   });
-});
+}); */
 
-voxaApp.onAfterStateChanged(
+/* voxaApp.onAfterStateChanged(
   (voxaEvent: IVoxaEvent, reply: IVoxaReply, transition: ITransition) => {
     voxaEvent.log.info("Transition", { transition });
   }
-);
+); */
 
 voxaApp.onError((voxaEvent: IVoxaEvent, error: Error, reply: IVoxaReply) => {
-  voxaEvent.log.error(error.message, {
+  /* voxaEvent.log.error(error.message, {
     error,
     event: voxaEvent.rawEvent,
     reply
-  });
+  }); */
   return { to: "FallbackIntent" };
 });
 
