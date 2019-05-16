@@ -5,7 +5,6 @@ import MusicTempoModel from "../model";
 const clickTrackURLTemplate = config.metronome.clickTrackURLTemplate;
 
 // TODO: make metronome work
-// TODO: Make tests using alexa mime
 
 export function register(voxaApp: VoxaApp) {
   voxaApp.onState("entry", {

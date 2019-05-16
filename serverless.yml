@@ -28,7 +28,7 @@ package:
     - scripts/**
     - assets/**
     - reports/**
-    - speech-assets/**
+    - speechAssets/**
 
 resources:
   Resources:
