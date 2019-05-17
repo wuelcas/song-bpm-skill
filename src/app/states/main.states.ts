@@ -1,4 +1,4 @@
-import { IVoxaEvent, IVoxaIntentEvent, PlayAudio, StopAudio, VoxaApp } from "voxa";
+import { IVoxaEvent, IVoxaIntentEvent, PlayAudio, VoxaApp } from "voxa";
 import * as config from "../../config/index";
 import MusicTempoModel from "../model";
 
