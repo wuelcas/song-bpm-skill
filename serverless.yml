@@ -29,6 +29,7 @@ package:
     - assets/**
     - reports/**
     - speechAssets/**
+    - .vscode/**
 
 resources:
   Resources:
