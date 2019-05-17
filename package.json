@@ -16,7 +16,7 @@
     "@types/raven": "^2.5.1",
     "alexa-mime": "^0.0.6",
     "ask-cli": "1.4.4",
-    "aws-sdk": "^2.457.0",
+    "aws-sdk": "^2.458.0",
     "gulp": "^3.9.1",
     "gulp-s3-upload": "^1.7.0",
     "lambda-log": "^2.0.0",
