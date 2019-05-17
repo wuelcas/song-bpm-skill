@@ -160,7 +160,7 @@ export function register(voxaApp: VoxaApp) {
     return {
       flow: "yield",
       reply: "InvalidIntent.InMetronome",
-      to: "shouldPlayMetronome"
+      to: "shouldPlayMetronome?"
     };
   });
 
