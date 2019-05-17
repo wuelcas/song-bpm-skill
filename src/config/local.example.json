@@ -1,0 +1,19 @@
+{
+	"server": {
+		"port": 3000,
+		"hostSkill": true
+	},
+	"spotify": {
+		"clientId": "",
+		"clientSecret": ""
+	},
+	"metronome": {
+		"clickTrackURLTemplate": "https://yoururl.com/Click-Track-{bpm}-BPM.mp3",
+		"minimumBPM": "50",
+		"maximumBPM": "180"
+	},
+  "s3": {
+    "bucket": "bucket-name",
+    "url": "https://s3.amazonaws.com/bucket-name/"
+  }
+}

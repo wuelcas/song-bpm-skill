@@ -4,14 +4,14 @@
       {
         "type": "node",
         "request": "launch",
-        "name": "Gulp watch",
-        "program": "${workspaceRoot}/node_modules/gulp/bin/gulp.js",
-        "args": [
+        "name": "Launch via NPM",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": [
+          "run",
           "watch"
         ],
-        "env": {
-          "DEBUG": "voxa"
-        }
+        "port": 9229,
+        "restart": true
       }
     ]
   }

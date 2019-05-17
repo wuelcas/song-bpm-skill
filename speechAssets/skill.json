@@ -1,0 +1,60 @@
+{
+  "manifest": {
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:956055560278:function:MusicTempo"
+        },
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ]
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false
+    },
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "name": "Music Tempo",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/a86f/6b448e779cc7471da8c9dfa144187bc7/APP_ICON?versionId=4Vu7cHOA.Pzubc.yh8d9IZ3vWercWxVb&AWSAccessKeyId=AKIAJFEYRBGIHK2BBYKA&Expires=1555023366&Signature=RiHBrmMAYzITyiZyMAMltl%2FFTHg%3D",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/cd0c/db2746eb46c2455cb5a1f62252dd53e5/APP_ICON_LARGE?versionId=lwBr2jbDTY1_ywqwJWIo3FeijGII79c9&AWSAccessKeyId=AKIAJFEYRBGIHK2BBYKA&Expires=1555023366&Signature=B520x5Mn0mhiau5tQL%2Fz48NrYg4%3D",
+          "summary": "Find out what's the Tempo (BPM) of any song and start a metronome at that tempo",
+          "description": "Want to practice your favorite song at the same tempo as the song but don't know the BPM? Now you can just ask Alexa the tempo for any song and she will tell you the tempo. Specify the artist name and album for better accuracy.",
+          "examplePhrases": [
+            "Alexa launch Music Tempo",
+            "Alexa ask Music Tempo to get the tempo for All Creatures by Kings Kaleidoscope",
+            "Alexa ask Music Tempo what's the tempo for All Creatures by Kings Kaleidoscope from the album becoming who we are"
+          ],
+          "keywords": [
+            "tempo",
+            "bpm",
+            "click",
+            "track",
+            "beats",
+            "per",
+            "minute",
+            "metronome",
+            "click",
+            "track",
+            "tracks",
+            "song",
+            "songs",
+            "practice"
+          ]
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Ask Alexa to open Music Tempo skill and say the name of the song you like to know the tempo from, you can specify the artist name and the album. You can start a metronome at that tempo if you want to afterwards",
+      "category": "MUSIC_INFO_REVIEWS_AND_RECOGNITION_SERVICE",
+      "distributionCountries": []
+    }
+  }
+}
