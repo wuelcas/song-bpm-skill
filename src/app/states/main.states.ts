@@ -74,9 +74,8 @@ export function register(voxaApp: VoxaApp) {
       }
 
       return {
-        flow: "yield",
         reply: "SongInfo.NotFoundResponse",
-        to: "tryAgainWithAnotherSong?"
+        to: "askToSearchOtherSong"
       };
     }
 
@@ -92,12 +91,14 @@ export function register(voxaApp: VoxaApp) {
         };
       }
 
-      return {
-        flow: "yield",
-        reply: "SongInfo.SayAnotherSong",
-        to: "sayBPMForSong"
-      };
+      return { to: "askToSearchOtherSong" };
     }
+  });
+
+  voxaApp.onState("askToSearchOtherSong", {
+    flow: "yield",
+    reply: "SongInfo.SearchOtherSong",
+    to: "tryAgainWithAnotherSong?"
   });
 
   voxaApp.onState("tryAgainWithAnotherSong?", { flow: "terminate", reply: "Exit.GoodbyeMessage" }, "NoIntent");
@@ -149,9 +150,8 @@ export function register(voxaApp: VoxaApp) {
 
     if (voxaEvent.intent.name === "NoIntent") {
       return {
-        flow: "yield",
-        reply: "Help.InviteToAskForAnotherSong",
-        to: "sayBPMForSong"
+        reply: "Common.Ok",
+        to: "askToSearchOtherSong"
       };
     }
 

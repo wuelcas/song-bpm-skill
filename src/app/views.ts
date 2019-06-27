@@ -69,13 +69,7 @@ const views = {
           say: "Would you like to start a metronome at that tempo?",
         },
         NotFoundResponse: {
-          card: {
-            text: "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: 'Let It Be', by 'The Beatles', from the album 'Let It Be'. Do you want to try with another song?",
-            title: "Song BPM",
-            type: "Standard",
-          },
-          reprompt: "Do you want to try with another song?",
-          say: "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: 'Let It Be', by 'The Beatles', from the album 'Let It Be'. Do you want to try with another song?"
+          say: "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: 'Let It Be', by 'The Beatles', from the album 'Let It Be'."
         },
         RepeatLastSongTempo: {
           card: {
@@ -113,8 +107,22 @@ const views = {
           },
           say:
             "You haven't search for any song. Try saying the name of the song with it's artist's name. You can specify the name of the album too. What's the name of the song you like the BPM from?",
+        },
+        SearchOtherSong: {
+          card: {
+            text: "Do you want to search another song?",
+            title: "Song BPM",
+            type: "Standard",
+          },
+          say: "Do you want to search another song?",
+          reprompt: "Do you want to try with another song?",
         }
       },
+      Common: {
+        Ok: {
+          say: "Ok."
+        }
+      }
     }
   }
 };

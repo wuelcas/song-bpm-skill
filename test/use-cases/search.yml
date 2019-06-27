@@ -123,7 +123,7 @@ User search for "I Told You So" song and say no to the third and final choice:
         Song: Hate To Say I Told You So
         Artist: The Hives
         Album: Veni Vidi Vicious
-      alexaResponse: SongInfo.NotFoundResponse
+      alexaResponse: SongInfo.NotFoundResponse, SongInfo.SearchOtherSong
 
 User search for a song that was not found:
   - beforeEach: mockNotFoundSong
@@ -150,4 +150,4 @@ User search for a song that has an invalid metronome tempo:
         Album: Ultimate Album
       alexaResponse: SongInfo.TempoResponse
   - YesIntent:
-      alexaResponse: SongInfo.SayAnotherSong
+      alexaResponse: SongInfo.SearchOtherSong
