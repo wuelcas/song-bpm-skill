@@ -8,12 +8,14 @@ export function register(voxaApp: VoxaApp) {
   voxaApp.onIntent("PauseIntent", { to: "PauseMetronome" });
 
   voxaApp.onIntent("LaunchIntent", {
+    alexaAPLTemplate: "APLTemplates.Instructions",
     flow: "yield",
     reply: "Launch.StartResponse",
     to: "sayBPMForSong"
   });
   voxaApp.onIntent("StartOverIntent", { to: "LaunchIntent" });
   voxaApp.onIntent("HelpIntent", {
+    alexaAPLTemplate: "APLTemplates.Instructions",
     flow: "yield",
     reply: "Help.InstructionsMessage",
     to: "sayBPMForSong"
@@ -44,6 +46,7 @@ export function register(voxaApp: VoxaApp) {
 
       if (result.notFound) {
         return {
+          alexaAPLTemplate: "APLTemplates.Instructions",
           flow: "yield",
           reply: "SongInfo.NotFoundResponse",
           to: "tryAgainWithAnotherSong?"
@@ -68,6 +71,7 @@ export function register(voxaApp: VoxaApp) {
       if (model.haveMoreSongs) {
         await model.setNextSongInfo();
         return {
+          alexaAPLTemplate: "APLTemplates.SongInfo",
           flow: "yield",
           reply: "SongInfo.TempoResponse",
           to: "wasThatTheSongTheUserWanted?"
@@ -109,7 +113,12 @@ export function register(voxaApp: VoxaApp) {
   );
   voxaApp.onState(
     "tryAgainWithAnotherSong?",
-    { flow: "yield", reply: "SongInfo.SayAnotherSong", to: "sayBPMForSong" },
+    {
+      alexaAPLTemplate: "APLTemplates.Instructions",
+      flow: "yield",
+      reply: "SongInfo.SayAnotherSong",
+      to: "sayBPMForSong"
+    },
     "YesIntent"
   );
 
@@ -118,6 +127,7 @@ export function register(voxaApp: VoxaApp) {
     if (model.Artist && model.BPM) {
       if (model.songWasGuessed) {
         return {
+          alexaAPLTemplate: "APLTemplates.SongInfo",
           flow: "yield",
           reply: "SongInfo.RepeatLastSongTempo",
           to: "tryAgainWithAnotherSong?"
@@ -125,6 +135,7 @@ export function register(voxaApp: VoxaApp) {
       }
 
       return {
+        alexaAPLTemplate: "APLTemplates.SongInfo",
         flow: "yield",
         reply: "SongInfo.TempoResponse",
         to: "wasThatTheSongTheUserWanted?"
@@ -132,6 +143,7 @@ export function register(voxaApp: VoxaApp) {
     }
 
     return {
+      alexaAPLTemplate: "APLTemplates.Instructions",
       flow: "yield",
       reply: "SongInfo.YouHaveNotSearchAnySong",
       to: "sayBPMForSong"
@@ -208,6 +220,7 @@ export function register(voxaApp: VoxaApp) {
   });
 
   voxaApp.onState("FallbackIntent", {
+    alexaAPLTemplate: "APLTemplates.Instructions",
     flow: "yield",
     reply: "InvalidIntent.DidNotUnderstand",
     to: "sayBPMForSong"
