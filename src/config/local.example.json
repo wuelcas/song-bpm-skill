@@ -15,5 +15,9 @@
   "s3": {
     "bucket": "bucket-name",
     "url": "https://s3.amazonaws.com/bucket-name/"
+	},
+  "APL": {
+    "backgroundImage": "",
+    "logoUrl": ""
   }
 }

@@ -1,0 +1,28 @@
+{
+  "data": {
+      "type": "object",
+      "objectId": "songInfo",
+      "backgroundImage": "",
+      "title": "Music Tempo",
+      "albumCover": "",
+      "textContent": {
+          "tempo": {
+              "type": "PlainText",
+              "text": ""
+          },
+          "artist": {
+              "type": "PlainText",
+              "text": ""
+          },
+          "song": {
+              "type": "PlainText",
+              "text": ""
+          },
+          "album": {
+              "type": "PlainText",
+              "text": ""
+          }
+      },
+      "logoUrl": ""
+  }
+}

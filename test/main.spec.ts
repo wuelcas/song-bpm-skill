@@ -1,6 +1,5 @@
 import * as mime from "alexa-mime";
 import * as _ from "lodash";
-import * as nock from "nock";
 import * as path from "path";
 import * as simple from "simple-mock";
 import * as SpotifyWebApi from "spotify-web-api-node";
@@ -13,6 +12,14 @@ const searchToldYouSoTrackResponse = {
       items: [
         {
           album: {
+            images: [
+              {
+                url: "",
+              },
+              {
+                url: "",
+              }
+            ],
             name: "Told You So"
           },
           artists: [
@@ -25,6 +32,14 @@ const searchToldYouSoTrackResponse = {
         },
         {
           album: {
+            images: [
+              {
+                url: "",
+              },
+              {
+                url: "",
+              }
+            ],
             name: "After Laughter"
           },
           artists: [
@@ -37,6 +52,14 @@ const searchToldYouSoTrackResponse = {
         },
         {
           album: {
+            images: [
+              {
+                url: "",
+              },
+              {
+                url: "",
+              }
+            ],
             name: "Veni Vidi Vicious"
           },
           artists: [
@@ -76,7 +99,6 @@ const tempoToldYouSoResponse = (id) => {
 const describeWrapper = {
   clear: () => {
     simple.restore();
-    nock.cleanAll();
   },
   mockInvalidTempoSong: () => {
     simple.mock(SpotifyWebApi.prototype, "clientCredentialsGrant").resolveWith({
@@ -92,7 +114,15 @@ const describeWrapper = {
           items: [
             {
               album: {
-                name: "Ultimate Album"
+                images: [
+                  {
+                    url: "",
+                  },
+                  {
+                    url: "",
+                  }
+                ],
+                name: "Ultimate Album",
               },
               artists: [
                 {
