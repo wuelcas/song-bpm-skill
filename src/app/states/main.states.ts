@@ -101,10 +101,16 @@ export function register(voxaApp: VoxaApp) {
     to: "tryAgainWithAnotherSong?"
   });
 
-  voxaApp.onState("tryAgainWithAnotherSong?", { flow: "terminate", reply: "Exit.GoodbyeMessage" }, "NoIntent");
-  voxaApp.onState("tryAgainWithAnotherSong?", { flow: "yield",
-  reply: "SongInfo.SayAnotherSong",
-  to: "sayBPMForSong" }, "NoIntent");
+  voxaApp.onState(
+    "tryAgainWithAnotherSong?",
+    { flow: "terminate", reply: "Exit.GoodbyeMessage" },
+    "NoIntent"
+  );
+  voxaApp.onState(
+    "tryAgainWithAnotherSong?",
+    { flow: "yield", reply: "SongInfo.SayAnotherSong", to: "sayBPMForSong" },
+    "YesIntent"
+  );
 
   voxaApp.onState("repeatTheBPMOfTheSong", (voxaEvent: IVoxaIntentEvent) => {
     const model = voxaEvent.model as MusicTempoModel;
@@ -139,10 +145,16 @@ export function register(voxaApp: VoxaApp) {
       const shuffle = 0;
       const loop = 0;
       const token = createToken(index, shuffle, loop, url);
-      const playAudio = new PlayAudio(url, token);
+      const playAudio = new PlayAudio({
+        behavior: "REPLACE_ALL",
+        metadata: {},
+        offsetInMilliseconds: 0,
+        token,
+        url
+      });
 
       return {
-        directives:[playAudio],
+        directives: [playAudio],
         flow: "terminate",
         reply: "Metronome.PlayAudio"
       };
@@ -174,14 +186,21 @@ export function register(voxaApp: VoxaApp) {
       const shuffle = token.shuffle;
       const loop = token.loop;
       const index = token.index;
-      const offsetInMilliseconds = voxaEvent.rawEvent.context.AudioPlayer.offsetInMilliseconds;
+      const offsetInMilliseconds =
+        voxaEvent.rawEvent.context.AudioPlayer.offsetInMilliseconds;
       const url = token.url;
 
       const newToken = createToken(index, shuffle, loop, url);
 
-      const playAudio = new PlayAudio(url, newToken, offsetInMilliseconds);
+      const playAudio = new PlayAudio({
+        behavior: "REPLACE_ALL",
+        metadata: {},
+        offsetInMilliseconds,
+        token: newToken,
+        url
+      });
 
-      return { reply: "Metronome.Resume", to: "die", directives:[playAudio] };
+      return { reply: "Metronome.Resume", to: "die", directives: [playAudio] };
     }
 
     return { flow: "terminate", reply: "Exit.GoodbyeMessage" };
