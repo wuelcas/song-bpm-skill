@@ -7,25 +7,32 @@ const clickTrackURLTemplate = config.metronome.clickTrackURLTemplate;
 export function register(voxaApp: VoxaApp) {
   voxaApp.onIntent("PauseIntent", { to: "PauseMetronome" });
 
-  voxaApp.onIntent("LaunchIntent", {
+  voxaApp.onIntent("LaunchIntent", { to: "initSongSearch" });
+  voxaApp.onIntent("SearchRequestIntent", { to: "initSongSearch" });
+  voxaApp.onIntent("StartOverIntent", { to: "initSongSearch" });
+
+  voxaApp.onState("initSongSearch", {
     alexaAPLTemplate: "APLTemplates.Instructions",
     flow: "yield",
     reply: "Launch.StartResponse",
     to: "sayBPMForSong"
   });
-  voxaApp.onIntent("StartOverIntent", { to: "LaunchIntent" });
+
   voxaApp.onIntent("HelpIntent", {
     alexaAPLTemplate: "APLTemplates.Instructions",
     flow: "yield",
     reply: "Help.InstructionsMessage",
     to: "sayBPMForSong"
   });
+
   voxaApp.onIntent("SongRequestIntent", { to: "sayBPMForSong" });
+
   voxaApp.onIntent("CancelIntent", { to: "ExitSkill" });
   voxaApp.onState("ExitSkill", {
     flow: "terminate",
     reply: "Exit.GoodbyeMessage"
   });
+
   voxaApp.onIntent("RepeatIntent", { to: "repeatTheBPMOfTheSong" });
 
   voxaApp.onState("sayBPMForSong", async (voxaEvent: IVoxaIntentEvent) => {
