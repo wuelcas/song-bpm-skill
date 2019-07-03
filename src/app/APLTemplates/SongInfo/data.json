@@ -2,7 +2,7 @@
   "data": {
       "type": "object",
       "objectId": "songInfo",
-      "backgroundImage": "https://music-tempo-skill.s3.amazonaws.com/images/background-apl.jpg",
+      "backgroundImage": "",
       "title": "Music Tempo",
       "albumCover": "",
       "textContent": {
@@ -23,6 +23,6 @@
               "text": ""
           }
       },
-      "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png"
+      "logoUrl": ""
   }
 }
