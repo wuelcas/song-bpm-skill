@@ -2,8 +2,7 @@
   "interactionModel": {
     "languageModel": {
       "invocationName": "music tempo",
-      "intents": [
-        {
+      "intents": [{
           "name": "LaunchIntent",
           "slots": [],
           "samples": [
@@ -13,8 +12,7 @@
         },
         {
           "name": "SongRequestIntent",
-          "slots": [
-            {
+          "slots": [{
               "name": "Artist",
               "type": "AMAZON.MusicGroup"
             },
@@ -227,10 +225,43 @@
         {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
+        },
+        {
+          "name": "SearchRequestIntent",
+          "slots": [],
+          "samples": [
+            "i want to search for a new tempo",
+            "i want to search a new tempo",
+            "make a search for a new tempo",
+            "search a new tempo",
+            "make a new search for a tempo",
+            "make a search for a tempo",
+            "i want to search a tempo",
+            "search a tempo",
+            "i want to create a new search",
+            "i want to create a search",
+            "create a new search",
+            "create a search",
+            "search it",
+            "search the song",
+            "i want to search for a new song",
+            "search a new song",
+            "i want to search another song",
+            "search another song",
+            "do a new search",
+            "do a search",
+            "make a new search",
+            "make a search",
+            "new search",
+            "I want to search a song",
+            "search for a song",
+            "search",
+            "search a song",
+            "I want to search for a song"
+          ]
         }
       ],
       "types": []
     }
-  },
-  "version": "1"
+  }
 }
