@@ -1,0 +1,28 @@
+{
+  "data": {
+      "type": "object",
+      "objectId": "bt3Sample",
+      "backgroundImage": "https://music-tempo-skill.s3.amazonaws.com/images/background-apl.jpg",
+      "title": "Music Tempo",
+      "albumCover": "",
+      "textContent": {
+          "tempo": {
+              "type": "PlainText",
+              "text": ""
+          },
+          "artist": {
+              "type": "PlainText",
+              "text": ""
+          },
+          "song": {
+              "type": "PlainText",
+              "text": ""
+          },
+          "album": {
+              "type": "PlainText",
+              "text": ""
+          }
+      },
+      "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png"
+  }
+}
