@@ -151,3 +151,44 @@ User search for a song that has an invalid metronome tempo:
       alexaResponse: SongInfo.TempoResponse
   - YesIntent:
       alexaResponse: SongInfo.SearchOtherSong
+
+User triggers a search using the SearchRequestIntent:
+  - beforeEach: mockSpotifyApiForToldYouSo
+  - afterEach: clear
+  - SearchRequestIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: told you so
+      alexaVariable:
+        BPM: 99
+        Song: Told You So
+        Artist: HRVY
+        Album: Told You So
+      alexaResponse: SongInfo.TempoResponse
+
+User triggers a search using the SearchRequestIntent in the middle of another search:
+  - beforeEach: mockSpotifyApiForToldYouSo
+  - afterEach: clear
+  - SearchRequestIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: told you so
+      alexaVariable:
+        BPM: 99
+        Song: Told You So
+        Artist: HRVY
+        Album: Told You So
+      alexaResponse: SongInfo.TempoResponse
+  - SearchRequestIntent:
+      alexaResponse: Launch.StartResponse
+  - SongRequestIntent:
+      slots:
+        Song: told you so
+      alexaVariable:
+        BPM: 99
+        Song: Told You So
+        Artist: HRVY
+        Album: Told You So
+      alexaResponse: SongInfo.TempoResponse
