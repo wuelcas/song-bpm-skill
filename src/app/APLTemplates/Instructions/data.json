@@ -1,0 +1,19 @@
+{
+  "data": {
+      "type": "object",
+      "objectId": "instructions",
+      "backgroundImage": "https://music-tempo-skill.s3.amazonaws.com/images/background-apl.jpg",
+      "title": "Music Tempo",
+      "textContent": {
+          "instructionsTitle": {
+              "type": "PlainText",
+              "text": "Say the name of the song"
+          },
+          "instructions": {
+              "type": "PlainText",
+              "text": "You can specify the artist and the album for better accuracy. <br /> You can say it like: 'Let It Be', by 'The Beatles', from the album 'Let It Be'."
+          }
+      },
+      "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png"
+  }
+}

@@ -127,7 +127,8 @@ const views = {
         }
       },
       APLTemplates: {
-        SongInfo: "{SongInfoTemplate}"
+        SongInfo: "{SongInfoTemplate}",
+        Instructions: "{InstructionsTemplate}"
       }
     }
   }
