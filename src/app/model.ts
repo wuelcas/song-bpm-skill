@@ -7,6 +7,7 @@ interface IFoundSongs {
   name: string,
   artist: string,
   album: string,
+  albumCover: string,
 };
 
 export default class Model {
@@ -19,6 +20,7 @@ export default class Model {
   public Song: string;
   public Artist: string;
   public Album: string;
+  public albumCover: string;
   public SpotifyAccessToken: string;
   public SpotifyAccessTokenExpireTime: number;
   public foundSongs: IFoundSongs[] = [];
@@ -52,6 +54,7 @@ export default class Model {
 
     this.foundSongs = searchTracksResponse.body.tracks.items.map(item => ({
       album: item.album.name,
+      albumCover: item.album.images[1].url,
       artist: item.artists[0].name,
       name: item.name,
       trackId: item.id
@@ -62,6 +65,7 @@ export default class Model {
     const song = this.foundSongs[0].name;
     const artist = this.foundSongs[0].artist;
     const album = this.foundSongs[0].album;
+    const albumCover = this.foundSongs[0].albumCover;
 
     const audioFeaturesResponse = await this.spotifyApi.getAudioFeaturesForTrack(trackId);
 
@@ -75,6 +79,7 @@ export default class Model {
     this.Song = song;
     this.Artist = artist;
     this.Album = album;
+    this.albumCover = albumCover;
 
     return {
       album,
@@ -91,6 +96,7 @@ export default class Model {
     const song = this.foundSongs[this.nextSongIndex].name;
     const artist = this.foundSongs[this.nextSongIndex].artist;
     const album = this.foundSongs[this.nextSongIndex].album;
+    const albumCover = this.foundSongs[this.nextSongIndex].albumCover;
 
     const audioFeaturesResponse = await this.spotifyApi.getAudioFeaturesForTrack(trackId);
 
@@ -102,6 +108,7 @@ export default class Model {
     this.Song = song;
     this.Artist = artist;
     this.Album = album;
+    this.albumCover = albumCover;
     this.nextSongIndex = this.nextSongIndex + 1;
   }
 
