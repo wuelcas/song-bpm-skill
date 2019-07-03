@@ -53,6 +53,7 @@ export function register(voxaApp: VoxaApp) {
       model.songWasGuessed = false; // Reset flag for repeat intent
 
       return {
+        alexaAPLTemplate: "APLTemplates.SongInfo",
         flow: "yield",
         reply: "SongInfo.TempoResponse",
         to: "wasThatTheSongTheUserWanted?"

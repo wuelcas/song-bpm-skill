@@ -5,7 +5,8 @@ const views = {
     translation: {
       Exit: {
         GoodbyeMessage: {
-          say: "Ok, remember you can always come back to know the tempo of your favorite songs, I'll try my best to give you the correct information. You can also specify the artist and album name for better accuracy. Good luck on your musical journey."
+          say:
+            "Ok, remember you can always come back to know the tempo of your favorite songs, I'll try my best to give you the correct information. You can also specify the artist and album name for better accuracy. Good luck on your musical journey."
         }
       },
       Help: {
@@ -14,12 +15,12 @@ const views = {
             text:
               "Say the name of the song and I'll tell you the BPM. You can also specify the name of the artist and the album.",
             title: "Song BPM",
-            type: "Standard",
+            type: "Standard"
           },
           reprompt: "What's the name of the song you like to know the BPM from?",
           say:
             "It's simple. Say the name of the song and I'll tell you the BPM. You can also specify the name of the artist and the album. " +
-            "What's the name of the song you like to know the BPM from?",
+            "What's the name of the song you like to know the BPM from?"
         },
         InviteToAskForAnotherSong: {
           say: "Ok. What's the name of the song you like to know the BPM from?"
@@ -52,10 +53,11 @@ const views = {
         InMetronome: {
           reprompt: "Would you like to start a metronomeat at {BPM} BPM?",
           say:
-            "I didn't understand what you said. Would you like to start a metronome at {BPM} BPM?",
+            "I didn't understand what you said. Would you like to start a metronome at {BPM} BPM?"
         },
         DidNotUnderstand: {
-          say: "I'm sorry, I didn't understand what you said. What song would like to know the BPM from?"
+          say:
+            "I'm sorry, I didn't understand what you said. What song would like to know the BPM from?"
         }
       },
       SongInfo: {
@@ -64,22 +66,23 @@ const views = {
             text:
               '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}"',
             title: "Song BPM",
-            type: "Standard",
+            type: "Standard"
           },
-          say: "Would you like to start a metronome at that tempo?",
+          say: "Would you like to start a metronome at that tempo?"
         },
         NotFoundResponse: {
-          say: "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: 'Let It Be', by 'The Beatles', from the album 'Let It Be'."
+          say:
+            "I'm sorry, I couldn't find the song you were looking for. You can specify the artist and the album for better accuracy. You can say it like: 'Let It Be', by 'The Beatles', from the album 'Let It Be'."
         },
         RepeatLastSongTempo: {
           card: {
             text:
               '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}".',
             title: "Song BPM",
-            type: "Standard",
+            type: "Standard"
           },
           say:
-            '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}". Would you like to try with another song?',
+            '{BPM} BPM is the tempo for "{Song}", by "{Artist}", from the album "{Album}". Would you like to try with another song?'
         },
         SayAnotherSong: {
           say: "Say the name of the song and I'll search it. What song do you want?"
@@ -101,27 +104,30 @@ const views = {
         YouHaveNotSearchAnySong: {
           card: {
             text:
-            "You haven't search for any song. Try saying the name of the song with it's artist's name. You can specify the name of the album too.",
+              "You haven't search for any song. Try saying the name of the song with it's artist's name. You can specify the name of the album too.",
             title: "Song BPM",
-            type: "Standard",
+            type: "Standard"
           },
           say:
-            "You haven't search for any song. Try saying the name of the song with it's artist's name. You can specify the name of the album too. What's the name of the song you like the BPM from?",
+            "You haven't search for any song. Try saying the name of the song with it's artist's name. You can specify the name of the album too. What's the name of the song you like the BPM from?"
         },
         SearchOtherSong: {
           card: {
             text: "Do you want to search another song?",
             title: "Song BPM",
-            type: "Standard",
+            type: "Standard"
           },
           say: "Do you want to search another song?",
-          reprompt: "Do you want to try with another song?",
+          reprompt: "Do you want to try with another song?"
         }
       },
       Common: {
         Ok: {
           say: "Ok."
         }
+      },
+      APLTemplates: {
+        SongInfo: "{SongInfoTemplate}"
       }
     }
   }
