@@ -12,6 +12,14 @@ const searchToldYouSoTrackResponse = {
       items: [
         {
           album: {
+            images: [
+              {
+                url: "",
+              },
+              {
+                url: "",
+              }
+            ],
             name: "Told You So"
           },
           artists: [
@@ -24,6 +32,14 @@ const searchToldYouSoTrackResponse = {
         },
         {
           album: {
+            images: [
+              {
+                url: "",
+              },
+              {
+                url: "",
+              }
+            ],
             name: "After Laughter"
           },
           artists: [
@@ -36,6 +52,14 @@ const searchToldYouSoTrackResponse = {
         },
         {
           album: {
+            images: [
+              {
+                url: "",
+              },
+              {
+                url: "",
+              }
+            ],
             name: "Veni Vidi Vicious"
           },
           artists: [
@@ -90,7 +114,15 @@ const describeWrapper = {
           items: [
             {
               album: {
-                name: "Ultimate Album"
+                images: [
+                  {
+                    url: "",
+                  },
+                  {
+                    url: "",
+                  }
+                ],
+                name: "Ultimate Album",
               },
               artists: [
                 {
