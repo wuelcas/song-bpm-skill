@@ -151,26 +151,8 @@ export function register(voxaApp: VoxaApp) {
   });
 
   voxaApp.onState("shouldPlayMetronome?", (voxaEvent: IVoxaIntentEvent) => {
-    const model = voxaEvent.model as MusicTempoModel;
     if (voxaEvent.intent.name === "YesIntent") {
-      const url = clickTrackURLTemplate.replace("{bpm}", model.BPM);
-      const index = 0;
-      const shuffle = 0;
-      const loop = 0;
-      const token = createToken(index, shuffle, loop, url);
-      const playAudio = new PlayAudio({
-        behavior: "REPLACE_ALL",
-        metadata: {},
-        offsetInMilliseconds: 0,
-        token,
-        url
-      });
-
-      return {
-        directives: [playAudio],
-        flow: "terminate",
-        reply: "Metronome.PlayAudio"
-      };
+      return { to: "PlayMetronome" };
     }
 
     if (voxaEvent.intent.name === "NoIntent") {
@@ -187,6 +169,39 @@ export function register(voxaApp: VoxaApp) {
     };
   });
 
+  voxaApp.onState("PlayMetronome", (voxaEvent: IVoxaEvent) => {
+    const model = voxaEvent.model as MusicTempoModel;
+    const url = clickTrackURLTemplate.replace("{bpm}", model.BPM);
+    const index = 0;
+    const shuffle = 0;
+    const loop = 0;
+    const metadata = {
+      art: {
+        sources: [
+          {
+            url: model.albumCover
+          }
+        ]
+      },
+      subtitle: `${model.Song} - ${model.Artist}`,
+      title: `${model.BPM} BPM`
+    };
+    const token = createToken(index, shuffle, loop, url, metadata);
+    const playAudio = new PlayAudio({
+      behavior: "REPLACE_ALL",
+      metadata,
+      offsetInMilliseconds: 0,
+      token,
+      url
+    });
+
+    return {
+      directives: [playAudio],
+      flow: "terminate",
+      reply: "Metronome.PlayAudio"
+    };
+  })
+
   voxaApp.onState("PauseMetronome", {
     alexaStopAudio: true,
     reply: "Metronome.Pause",
@@ -199,15 +214,16 @@ export function register(voxaApp: VoxaApp) {
       const shuffle = token.shuffle;
       const loop = token.loop;
       const index = token.index;
+      const metadata = token.metadata;
       const offsetInMilliseconds =
         voxaEvent.rawEvent.context.AudioPlayer.offsetInMilliseconds;
       const url = token.url;
 
-      const newToken = createToken(index, shuffle, loop, url);
+      const newToken = createToken(index, shuffle, loop, url, metadata);
 
       const playAudio = new PlayAudio({
         behavior: "REPLACE_ALL",
-        metadata: {},
+        metadata,
         offsetInMilliseconds,
         token: newToken,
         url
@@ -228,7 +244,7 @@ export function register(voxaApp: VoxaApp) {
 
   voxaApp.onUnhandledState((): any => ({ to: "FallbackIntent" }));
 
-  function createToken(index: number, shuffle: number, loop: number, url: string) {
-    return JSON.stringify({ index, shuffle, loop, url });
+  function createToken(index: number, shuffle: number, loop: number, url: string, metadata: object) {
+    return JSON.stringify({ index, shuffle, loop, url, metadata });
   }
 }
