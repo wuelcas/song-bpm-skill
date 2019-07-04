@@ -19,5 +19,6 @@
   "APL": {
     "backgroundImage": "",
     "logoUrl": ""
-  }
+  },
+  "skillId": "amzn1.ask.skill.abc123"
 }
