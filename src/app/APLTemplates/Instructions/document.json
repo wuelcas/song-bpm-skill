@@ -131,6 +131,7 @@
                       "type": "Image",
                       "source": "${payload.data.backgroundImage}",
                       "scale": "best-fill",
+                      "align": "top-left",
                       "width": "100vw",
                       "height": "100vh",
                       "position": "absolute",
