@@ -181,6 +181,42 @@ export function register(voxaApp: VoxaApp) {
     };
   });
 
+  voxaApp["onPlaybackController.PlayCommandIssued"]((voxaEvent: IVoxaEvent) => {
+    const token = JSON.parse(voxaEvent.rawEvent.context.AudioPlayer.token);
+    const shuffle = token.shuffle;
+    const loop = token.loop;
+    const index = token.index;
+    const metadata = token.metadata;
+    const offsetInMilliseconds =
+      voxaEvent.rawEvent.context.AudioPlayer.offsetInMilliseconds;
+    const url = token.url;
+
+    const newToken = createToken(index, shuffle, loop, url, metadata);
+
+    const playAudio = {
+      audioItem: {
+          metadata,
+          stream: {
+              offsetInMilliseconds,
+              token: newToken,
+              url,
+          },
+      },
+      playBehavior: "REPLACE_ALL",
+      type: "AudioPlayer.Play",
+    };
+
+    const reply = {
+      response: {
+        directives: [playAudio],
+      },
+      sessionAttributes: {},
+      version: "1.0"
+    };
+
+    return reply;
+  });
+
   voxaApp.onState("PlayMetronome", (voxaEvent: IVoxaEvent) => {
     const model = voxaEvent.model as MusicTempoModel;
     const url = clickTrackURLTemplate.replace("{bpm}", model.BPM);
